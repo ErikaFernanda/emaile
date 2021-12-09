@@ -1,9 +1,11 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
-
+import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
+import Constants from 'expo-constants';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Header from "../components/Header";
 
 export default function EmailsListScreen({ navigation }) {
   const [emails, setEmails] = useState([]);
@@ -19,26 +21,27 @@ export default function EmailsListScreen({ navigation }) {
 
   function renderItem({ item }) {
     return (
-      <View style={styles.containerEmail}>
+      <TouchableOpacity style={styles.containerEmail} onPress={()=>navigation.navigate('EmailScreen',{id:item.id})}>
         <View style={{ flexDirection: "row" }}>
           <Image style={styles.image} source={{ uri: item.picture }} />
-          <View>
-            <Text>{item.to}</Text>
-            <Text>{item.tittle}</Text>
-            <Text style={{color:'gray'}}>{item.summary}</Text>
+          <View style={{justifyContent:'center'}}>
+            <Text style={{color:'white'}}>{item.to}</Text>
+            <Text style={{color:'#7f7d7d'}}>{item.tittle}</Text>
           </View>
         </View>
 
         <View style={styles.containerHour}>
-          <Text style={{color:'#16A0F7'}}>{item.time}</Text>
-          <Icon name={item.star ? 'star' : 'star-outline'} size={30} color={item.star ? 'orange' : 'black'} />
+          <Text style={{color:'#7f7d7d'}}>{item.time}</Text>
+          <Icon name={item.star ? 'star' : 'star-outline'} size={30} color={item.star ? 'orange' : 'white'} />
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 
   return (
     <View style={styles.container}>
+      <Header/>
+      <StatusBar style="auto" />
       <FlatList
         data={emails}
         renderItem={renderItem}
@@ -51,21 +54,24 @@ export default function EmailsListScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: Constants.statusBarHeight,
+    backgroundColor:'white'
   },
   image: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    margin: 5,
+    margin: 10,
   },
   containerEmail: {
     height: 80,
     flexDirection: "row",
-    borderColor: "#d3d3d3",
-    borderBottomWidth:1,
     alignItems: "center",
-    margin: 5,
+    margin: 6,
+    marginBottom: 0,
     justifyContent: "space-between",
+    backgroundColor:'black',
+    borderRadius:10
   },
   containerHour: {
     width: 60,
