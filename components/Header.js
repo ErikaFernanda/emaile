@@ -1,15 +1,15 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Logo from "../assets/emaile.png"
 export default function Header() {
   return (
     <View style={styles.header}>
       <Image
         style={styles.logo}
-        source={{
-          uri: "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_2x_r2.png",
-        }}
+        source={Logo} 
       />
+      
     </View>
   );
 }
@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
 
   logo: {
     width: 150,
-    height: 40,
+    height: 50,
   },
 });
