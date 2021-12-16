@@ -4,11 +4,11 @@
     "slug": "emaile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/emaile_icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_emaile.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "black"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
